@@ -1,0 +1,18 @@
+* {
+	background-color: #1A1A1A;
+	color: white;
+	font-family: sans-serif;
+}
+
+h1 {
+	color: rgb(255,15,141);
+}
+
+h2 {
+	color: rgb(11,147,255);
+}
+
+:link {
+	color: rgb(255,255,0);
+}
+
