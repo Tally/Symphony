@@ -100,6 +100,10 @@ td img {
 	border: 1px solid black;
 }
 
+#top3summary {
+	padding: 10px;
+}
+
 #top3summary img {
 	float: right;
 }
@@ -145,10 +149,6 @@ td img {
 
 .hidden {
 	display: none;
-}
-
-.backbutton {
-	padding: 4px;
 }
 
 h1 {
