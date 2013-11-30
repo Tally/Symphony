@@ -20,6 +20,7 @@
 			<td><img title='Nirvana' src='nirvana.jpg'></td>
 			<td><img title='The Tins' src='tins.jpg'></td>
 			</tr></table>
+			<button id='submitnew'>Submit</button>
 		</div>
 		<div id='controls'>
 		<h5> Symphonic Friends </h5>
@@ -31,15 +32,30 @@
 	<div id='contentpanel'>
 		<div id='musicarea'>
 		<div id='top3'>	
-			<div id='top3summary'>
-			</div>
-			<div id='top3details'>
+			<div class='recommendationtitle' id='top3title'>Your Top 3 Recommendations</div>
+			<div id='top3summary'></div>
+			<div id='top3details'></div>
+			<div id='submissionform'>
+				<table>
+				<tr>
+					<td><input type='text' name='title' value='Title'></td>
+					<td>by <input type='text' name='artist' value='Artist'></td>
+				</tr><tr>
+					<td><input type='text' name='imagesource' value='Image URL'></td>
+				</tr><tr>
+					<td colspan='2'><textarea name='review'>Reason for Recommending</textarea></td>
+				</tr><tr>
+					<td><button type='button' id='submitconfirm'><em>Submit Recommendation</em></button><button type='button' id='submitcancel'>Cancel</button></td>
+				</tr>
+				</table>
 			</div>
 		</div>
 		<div id='next5'>
+			<div class='recommendationtitle' id='next5title'>5 More Recommendations</div>
+			<div id='next5summary'></div>
 		</div>
 		<div id='dynamicwell'>
-			<div id='welltitle'>Past Music Recommended by Tally</div>
+			<div class='recommendationtitle' id='welltitle'>Past Music Recommended by Tally</div>
 			<table><tr>
 			<td class='cover1'><img src='well1.jpg' title='Grimes' ></td>
 			<td class='cover1'><img src='well2.jpg' title='Blue Sky Black Death'></td>

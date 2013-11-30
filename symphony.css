@@ -16,14 +16,6 @@ html,body {
 
 table {
 	border-width: 0px;
-}
-
-.album {
-	display: block;
-	vertical-align: middle;
-}
-
-table {
 	width: 100%;
 }
 
@@ -36,6 +28,7 @@ td img {
 }
 
 #top3,#next5 {
+	padding: 0px;
 	overflow-x: auto;
 	overflow-y: hidden;
 }
@@ -51,6 +44,7 @@ td img {
 	color: white;
 	position: fixed;
 	margin-top: 80px;
+	padding: 7px;
 }
 
 #username {
@@ -60,8 +54,15 @@ td img {
 }
 
 #ownlast3 {
-	height: 120px;
+	height: 170px;
+	width: 179px;
+	margin-left: -7px;
+	padding: 5px;
 	background-color: purple;
+}
+
+#submit {
+	margin-left: auto;
 }
 
 #friendList {
@@ -69,7 +70,7 @@ td img {
 }
 
 #contentpanel {
-	margin-left: 175px;
+	margin-left: 189px;
 }
 
 #musicarea {
@@ -89,34 +90,60 @@ td img {
 	text-align: center;
 }
 
+#submissionform {
+	background-color: purple;
+	color: white;
+	height: 360px;
+	padding: 10px;
+}
+
+#submissionform [type=text] {
+	width: 90%;
+}
+
+#submissionform [name=review] {
+	width: 90%;
+	height: 120px;
+}
+
 #top3 {
-	height: 40%;
 	background-color: pink;
-	height: 250px;
+	height: 360px;
 }
 
 #top3 img {
 	width: 200px;
 	border: 1px solid black;
+	margin: 25px;
+}
+
+.recommendationtitle {
+	text-align: center;
+	color: white;
+	background-color: rgba(0,0,0,.75);
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 #top3summary {
 	padding: 10px;
+	text-align: center;
 }
 
-#top3summary img {
-	float: right;
+#top3summary table {
+	max-width: 750px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-#top3summary table td:hover {
+#top3summary td:hover {
 	background: black;
 	color: white;
 }
 
 #next5 {
-	height: 20%;
 	background-color: green;
-	height: 150px;
+	height: 180px;
 	text-align: center;
 }
 
@@ -125,17 +152,15 @@ td img {
 	height: 130px;
 }
 
+#next5 img:hover {
+	background-color: black;
+}
+
 #dynamicwell {
 	background-color: rgb(51,51,51);
 	color: white;
-	height: 200px;
+	min-height: 200px;
 	overflow-y: auto;
-}
-
-#welltitle {
-	font-size: 20px;
-	height: 25px;
-	text-align: right;
 }
 
 .review * {
