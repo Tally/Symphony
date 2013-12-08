@@ -61,7 +61,7 @@ function expandTop3Details(albumNo) {
 	if (album[6] != null) sourceLinkText = "<a href='"+album[6]+"'>Listen Here</a>";
 	else sourceLinkText = "";
 	
-	$("#top3details").html("<tr><td colspan='2'>"+album[0]+" "+album[1]+" recommends this "+albumTypeText+"</td></tr><tr><td rowspan='5'><img alt='"+album[4]+"' src='"+album[5]+"'></td><td><strong>"+album[4]+"</strong> by "+album[2]+"</td></tr><tr><td>"+sourceLinkText+"</td></tr><tr><td colspan='2'>\""+album[3]+"\"</td></tr><tr><td colspan='2'>Tags?</td></tr><tr><td><button type='button' class='backbutton'><em>Back</em></button></td></tr>").toggle();
+	$("#top3details").html("<tr><td colspan='2'>"+album[0]+" "+album[1]+" recommends this "+albumTypeText+"</td></tr><tr><td rowspan='5'><img alt='"+album[4]+"' src='"+album[5]+"'></td><td><strong>"+album[4]+"</strong> by "+album[2]+"</td></tr><tr><td>"+sourceLinkText+"</td></tr><tr><td colspan='2'>\""+album[3]+"\"</textarea></td></tr><tr><td colspan='2'>Tags?</td></tr><tr><td><button type='button' class='backbutton'><em>Back</em></button></td></tr>").toggle();
 	$(".backbutton").click(function() {minimizeTop3Details()});
 }
 

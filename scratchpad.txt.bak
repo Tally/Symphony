@@ -1,0 +1,47 @@
+<table>
+	<tr>
+		<td colspan='2'>"+album[0]+" "+album[1]+" recommends this "+albumTypeText</td>
+	</tr><tr>
+		<td rowspan='4'>
+			<img alt='"+album[4]+"' src='"+album[5]+"'>
+		</td>
+		<td><strong>"+album[4]+"</strong> by "+album[2]+"</td>
+	</tr><tr>
+		<td>"+sourceLinkText+"</td>
+	</tr><tr>
+		<td colspan='2'>\""+album[3]+"\"</textarea></td>
+	</tr><tr>	
+		<td colspan='2'>Tags?</td>
+	</tr>
+	<tr>
+		<td><button type='button' class='backbutton'><em>Back</em></button></td>
+	</tr>
+</table>
+
+var albumTypeText;
+if (album[7] == "a") albumTypeText = "album";
+else if (album[7] == "t") albumTypeText = "track";
+else albumTypeText = "";
+
+var sourceLinkText;
+if (album[6] != null) sourceLinkText = "<a href='"+album[6]+"'>Listen Here</a>";
+else sourceLinkText = "";
+
+//New Details HTML
+"<tr>
+		<td>"+album[0]+" "+album[1]+" recommends this "+albumTypeText</td>
+	</tr><tr>
+		<td rowspan='4'>
+			<img alt='"+album[4]+"' src='"+album[5]+"'>
+		</td>
+		<td><strong>"+album[4]+"</strong> by "+album[2]+"</td>
+	</tr><tr>
+		<td>"+sourceLinkText+"</td>
+	</tr><tr>
+		<td colspan='2'>\""+album[3]+"\"</textarea></td>
+	</tr><tr>	
+		<td colspan='2'>Tags?</td>
+	</tr>"
+
+//Old Details HTML
+"<table><tr><td rowspan='4'><img src='"+album[2]+"'></td><td class='top3title' colspan='2'><strong>"+album[0]+"</strong> by "+album[1]+"</td></tr><tr><td>Listen <a href='"+album[5]+"'>here</a></td></tr><tr><td>"+album[4]+"</td></tr><tr><td>Recommended by "+album[3]+"</td></tr><tr><td><button type='button' class='backbutton'><em>Back</em></button></td></tr></table>"

@@ -106,10 +106,6 @@ td img {
 	height: 120px;
 }
 
-#submissionform [name=title] {
-	width: 70%;
-}
-
 #top3 {
 	background-color: pink;
 	height: 360px;

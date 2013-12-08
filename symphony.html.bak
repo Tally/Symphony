@@ -52,7 +52,7 @@
 				</tr><tr>
 					<td colspan='2'><textarea name='review'></textarea></td>
 				</tr><tr>	
-					<td colspan='2'><input type='text' name='tags'></td>
+					<td colspan='2'><input type='text' name='tags'>
 				</tr><tr>
 					<td><input type='text' name='recommendees'></td>
 					<td><button type='button' id='submitconfirm'><em>Submit Recommendation</em></button><button type='button' id='submitcancel'>Cancel</button></td>
