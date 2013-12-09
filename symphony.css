@@ -14,7 +14,7 @@ html,body {
 	margin:0px;
 }
 
-table {
+;table {
 	border-width: 0px;
 	width: 100%;
 }
@@ -79,6 +79,7 @@ td img {
 
 #musicarea table {
 	height: 100%;
+	margin: auto;
 }
 
 #titlebar {
@@ -147,7 +148,7 @@ td img {
 
 #next5 {
 	background-color: green;
-	height: 180px;
+	height: 190px;
 	text-align: center;
 }
 

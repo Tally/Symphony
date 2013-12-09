@@ -1,15 +1,25 @@
+//Next Details
+<table>
+<tr>
+<td>OLDIMG</img></td>
+<td>
+</tr>
+</table>
+
+//Formatted Top 3 Details
 <table>
 	<tr>
 		<td colspan='2'>"+album[0]+" "+album[1]+" recommends this "+albumTypeText</td>
 	</tr><tr>
-		<td rowspan='4'><img alt='"+album[4]+"' src='"+album[5]+"'></td>
+		<td rowspan='5'><img alt='"+album[4]+"' src='"+album[5]+"'></td>
+	</tr><tr>
 		<td><strong>"+album[4]+"</strong> by "+album[2]+"</td>
 	</tr><tr>
 		<td>"+sourceLinkText+"</td>
 	</tr><tr>
-		<td colspan='2'>\""+album[3]+"\"</td>
+		<td>\""+album[3]+"\"</td>
 	</tr><tr>	
-		<td colspan='2'>Tags?</td>
+		<td>Tags?</td>
 	</tr><tr>
 		<td><button type='button' class='backbutton'><em>Back</em></button></td>
 	</tr>

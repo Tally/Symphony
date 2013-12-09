@@ -1,3 +1,5 @@
+var nextOffset = 0;
+
 var recommendations =  new Array();
 recommendations[0] = ["0RecommenderFirst", "1RecommenderLast", "2Artist", "3RecommendationText", "4Title", "5url://of.the.image/", "6url://of.a.listening.source", "7Type"];
 recommendations[1] = ["Price", "Clark", "The Velvet Underground & Nico", "Pretty solid if you haven't - must listen", "The Velvet Underground", "cover1.jpg", "http://www.youtube.com/watch?v=dQw4w9WgXcQ", "a"];
@@ -40,11 +42,18 @@ function paintFriends() {
 
 //Content Painters
 function paintTop3() {
-	$("#top3summary").html("<table><tr><td id='no1' class='mainAlbums'><img alt='"+recommendations[1][0]+"' src='"+recommendations[1][2]+"'><br><em><strong>"+recommendations[1][0]+"</strong></em></td><td id='no2' class='mainAlbums'><img alt='"+recommendations[2][0]+"' src='"+recommendations[2][2]+"'><br><em><strong>"+recommendations[2][0]+"</strong></em></td><td id='no3' class='mainAlbums'><img alt='"+recommendations[3][0]+"' src='"+recommendations[3][2]+"'><br><em><strong>"+recommendations[3][0]+"</strong></em></td></tr></table>");
+	$("#top3summary").html("<table><tr><td id='no1' class='mainAlbums'><img alt='"+recommendations[1][4]+"' src='"+recommendations[1][5]+"'><br><em><strong>"+recommendations[1][4]+"</strong></em></td><td id='no2' class='mainAlbums'><img alt='"+recommendations[2][4]+"' src='"+recommendations[2][5]+"'><br><em><strong>"+recommendations[2][4]+"</strong></em></td><td id='no3' class='mainAlbums'><img alt='"+recommendations[3][4]+"' src='"+recommendations[3][5]+"'><br><em><strong>"+recommendations[3][4]+"</strong></em></td></tr></table>");
 }
 
 function paintNext5() {
-	$("#next5summary").html("<img id='no4' class='next5album' alt='"+recommendations[4][0]+"' src='"+recommendations[4][2]+"'><img id='no5' class='next5album' alt='"+recommendations[5][0]+"' src='"+recommendations[5][2]+"'><img id='no6' class='next5album' alt='"+recommendations[6][0]+"' src='"+recommendations[6][2]+"'><img id='no7' class='next5album' alt='"+recommendations[7][0]+"' src='"+recommendations[7][2]+"'><img id='no8' class='next5album' alt='"+recommendations[8][0]+"' src='"+recommendations[8][2]+"'>");
+	var nextHTML = "";
+	var currOffset = nextOffset + 4;
+	for (var i = 0; i<5; i++) {
+		nextHTML = nextHTML + "<td id='"+currOffset+"'><img alt='"+recommendations[currOffset][4]+"' src='"+recommendations[currOffset][5]+"'></td>"
+		currOffset++;
+	}
+	$("#next5summary table").append(nextHTML);
+	$("#next5 img").click(function() {expandNext5(this)});
 }
 
 //Dynamic Painters
@@ -61,7 +70,7 @@ function expandTop3Details(albumNo) {
 	if (album[6] != null) sourceLinkText = "<a href='"+album[6]+"'>Listen Here</a>";
 	else sourceLinkText = "";
 	
-	$("#top3details").html("<tr><td colspan='2'>"+album[0]+" "+album[1]+" recommends this "+albumTypeText+"</td></tr><tr><td rowspan='5'><img alt='"+album[4]+"' src='"+album[5]+"'></td><td><strong>"+album[4]+"</strong> by "+album[2]+"</td></tr><tr><td>"+sourceLinkText+"</td></tr><tr><td colspan='2'>\""+album[3]+"\"</td></tr><tr><td colspan='2'>Tags?</td></tr><tr><td><button type='button' class='backbutton'><em>Back</em></button></td></tr>").toggle();
+	$("#top3details").html("<tr><td colspan='2'>"+album[0]+" "+album[1]+" recommends this "+albumTypeText+"</td></tr><tr><td rowspan='5'><img alt='"+album[4]+"' src='"+album[5]+"'></td><td><strong>"+album[4]+"</strong> by "+album[2]+"</td></tr><tr><td>"+sourceLinkText+"</td></tr><tr><td>\""+album[3]+"\"</td></tr><tr><td>Tags?</td></tr><tr><td><button type='button' class='backbutton'><em>Back</em></button></td></tr>").toggle();
 	$(".backbutton").click(function() {minimizeTop3Details()});
 }
 
@@ -85,4 +94,9 @@ function showSubmissionForm() {
 function cancelSubmissionForm() {
 	$("#top3summary, #top3title").show();
 	$("#submissionform").hide();
+}
+
+function expandNext5(album) {
+	//var currIndex = $(album).parent().attr(id);
+	alert($(album).html());
 }
