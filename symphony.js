@@ -1,4 +1,7 @@
 var nextOffset = 0;
+var maxOffset = 6;
+
+var albumFiller = ["Tally", "Lassiter", "Le Artiste", "YTF not, eh?", "Al the Bum", "album-filler.png", "http://www.youtube.com/watch?v=dQw4w9WgXcQ"]
 
 var recommendations =  new Array();
 recommendations[0] = ["0RecommenderFirst", "1RecommenderLast", "2Artist", "3RecommendationText", "4Title", "5url://of.the.image/", "6url://of.a.listening.source", "7Type"];
@@ -11,6 +14,8 @@ recommendations[6] = ["Price", "Clark", "Kinks", "it's good I guess", "Kinks", "
 recommendations[7] = ["Price", "Clark", "Alt-J", "oh yeah", "Alt-J", "cover7.jpg"];
 recommendations[8] = ["Price", "Clark", "Quebec", "awesome", "Ween", "cover8.jpg"];
 
+for(var i=9;i<maxOffset+5;i++){recommendations[i]=["Tally", "Lassiter", "Le Artiste", "YTF not, eh?", "Al the Bum("+i+")", "album-filler.png", "http://www.youtube.com/watch?v=dQw4w9WgXcQ"]};
+
 var ownRecommendations =  new Array();
 ownRecommendations[0] = [];
 ownRecommendations[1] = [];
@@ -19,6 +24,8 @@ ownRecommendations[3] = [];
 ownRecommendations[4] = [];
 
 var friends = ["George Clark", "Tally Lassiter", "Zach Stamper", "Nick Mortenson", "Grace Thompson"];
+
+
 
 $(document).ready(function() {
 	$("#top3details").hide();
@@ -31,6 +38,8 @@ $(document).ready(function() {
 	$(".mainAlbums").click(function() {expandTop3Details($(this).index()+1)});
 	$("#submitnew").click(function() {showSubmissionForm()});
 	$("#submitcancel").click(function() {cancelSubmissionForm()});
+	$("#next5control").click(function() {next5Suggestions()});
+	$("#prev5control").click(function() {prev5Suggestions()});
 });
 
 //Control Painters
@@ -46,14 +55,16 @@ function paintTop3() {
 }
 
 function paintNext5() {
-	var nextHTML = "";
 	var currOffset = nextOffset + 4;
+	
+	var currCell = $("#next5 td:first");
 	for (var i = 0; i<5; i++) {
-		nextHTML = nextHTML + "<td id='"+currOffset+"'><img alt='"+recommendations[currOffset][4]+"' src='"+recommendations[currOffset][5]+"'></td>"
+		currCell.html("<img alt='"+recommendations[currOffset][4]+"' src='"+recommendations[currOffset][5]+"'>").next().html("<strong><em>"+recommendations[currOffset][4]+"</em><br>"+recommendations[currOffset][2]+"</strong><br><a href='"+recommendations[currOffset][6]+"'>Listen</a>").hide();
+		currCell = currCell.next().next();
 		currOffset++;
 	}
-	$("#next5summary table").append(nextHTML);
-	$("#next5 img").click(function() {expandNext5(this)});
+
+	$("#next5 img").click(function() {$(this).parent().next().toggle()});
 }
 
 //Dynamic Painters
@@ -70,13 +81,19 @@ function expandTop3Details(albumNo) {
 	if (album[6] != null) sourceLinkText = "<a href='"+album[6]+"'>Listen Here</a>";
 	else sourceLinkText = "";
 	
-	$("#top3details").html("<tr><td colspan='2'>"+album[0]+" "+album[1]+" recommends this "+albumTypeText+"</td></tr><tr><td rowspan='5'><img alt='"+album[4]+"' src='"+album[5]+"'></td><td><strong>"+album[4]+"</strong> by "+album[2]+"</td></tr><tr><td>"+sourceLinkText+"</td></tr><tr><td>\""+album[3]+"\"</td></tr><tr><td>Tags?</td></tr><tr><td><button type='button' class='backbutton'><em>Back</em></button></td></tr>").toggle();
+	$("#top3details .recommenderCell").html(album[0]+" "+album[1]+" recommends this "+albumTypeText);
+	$("#top3details .coverCell").html("<img alt='"+album[4]+"' src='"+album[5]+"'>");
+	$("#top3details .titleCell").html("<strong>"+album[4]+"</strong> by "+album[2]);
+	$("#top3details .linkCell").html(sourceLinkText);
+	$("#top3details .reviewCell").html("\""+album[3]+"\"");
+	
+	$("#top3details").show();
 	$(".backbutton").click(function() {minimizeTop3Details()});
 }
 
 function minimizeTop3Details() {
-	$("#top3details").toggle();
-	$("#top3summary").toggle();
+	$("#top3details").hide();
+	$("#top3summary").show();
 }
 
 function showSubmissionForm() {
@@ -96,7 +113,21 @@ function cancelSubmissionForm() {
 	$("#submissionform").hide();
 }
 
-function expandNext5(album) {
-	//var currIndex = $(album).parent().attr(id);
-	alert($(album).html());
+function expandOrCloseNext5(index) {
+	var currIndex = index;
+	$("."+currIndex+".detailCell").toggle();
+	alert("."+currIndex+".detailCell");
+}
+
+//Controls
+function next5Suggestions() {
+	nextOffset + 5 < maxOffset ? nextOffset += 5 : nextOffset = maxOffset;
+	alert(nextOffset);
+	paintNext5();
+}
+
+function prev5Suggestions() {
+	nextOffset - 5 > 0 ? nextOffset -= 5 : nextOffset = 0;
+	alert(nextOffset);
+	paintNext5();
 }

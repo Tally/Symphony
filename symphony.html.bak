@@ -34,7 +34,24 @@
 		<div id='top3'>	
 			<div class='recommendationtitle' id='top3title'>Your Top 3 Recommendations</div>
 			<div id='top3summary'></div>
-			<div id='top3details'></div>
+			<div id='top3details'>
+				<table>
+					<tr>
+						<td colspan='2' class='recommenderCell'></td>
+					</tr><tr>
+						<td rowspan='5' class='coverCell'></td>
+						<td class='titleCell'></td>
+					</tr><tr>
+						<td class='linkCell'></td>
+					</tr><tr>
+						<td class='reviewCell'></td>
+					</tr><tr>
+						<td class='tagCell'>Tags?</td>
+					</tr><tr>
+						<td class='buttonCell'><button type='button' class='backbutton'><em>Back</em></button></td>
+					</tr>
+				</table>
+			</div>
 			<div id='submissionform'>
 				<table>
 				<tr>
@@ -52,7 +69,7 @@
 				</tr><tr>
 					<td colspan='2'><textarea name='review'></textarea></td>
 				</tr><tr>	
-					<td colspan='2'><input type='text' name='tags'>
+					<td colspan='2'><input type='text' name='tags'></td>
 				</tr><tr>
 					<td><input type='text' name='recommendees'></td>
 					<td><button type='button' id='submitconfirm'><em>Submit Recommendation</em></button><button type='button' id='submitcancel'>Cancel</button></td>
@@ -62,7 +79,20 @@
 		</div>
 		<div id='next5'>
 			<div class='recommendationtitle' id='next5title'>5 More Recommendations</div>
-			<div id='next5summary'></div>
+			<div id='prev5recommendations'>-</div>
+			<div id='next5recommendations'>+</div>
+			<div id='next5summary'><table><tr>
+				<td class='coverCell'></td>
+				<td class='detailCell'></td>
+				<td class='coverCell'></td>
+				<td class='detailCell'></td>
+				<td class='coverCell'></td>
+				<td class='detailCell'></td>
+				<td class='coverCell'></td>
+				<td class='detailCell'></td>
+				<td class='coverCell'></td>
+				<td class='detailCell'></td>
+			</tr></table></div>
 		</div>
 		<div id='dynamicwell'>
 			<div class='recommendationtitle' id='welltitle'>Past Music Recommended by Tally</div>
