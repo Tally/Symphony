@@ -2,6 +2,7 @@
 	<head>
 	<title>Symphony</title>
 	<link rel='stylesheet' type='text/css' href='symphony.css'>
+	<link href='http://fonts.googleapis.com/css?family=Allan' rel='stylesheet' type='text/css'>
 	<script src='jquery-1.10.2.min.js'></script>
     <script src='symphony.js'></script>
 	</head>
@@ -30,7 +31,6 @@
 		</div>
 	</div>
 	<div id='contentpanel'>
-		<div id='musicarea'>
 		<div id='top3'>	
 			<div class='recommendationtitle' id='top3title'>Your Top 3 Recommendations</div>
 			<div id='top3summary'></div>
@@ -57,22 +57,22 @@
 					<table>
 						<tr>
 							<td>
+								<input type='hidden' name='submitter'>
 								<select name='trackoralbum'>
 									<option value='track'>Track</option>
 									<option value='album'>Album</option>
-									<option value='general'>General</option>
 								</select>
 								<input type='text' name='title'></td>
 							<td>by <input type='text' name='artist'></td>
 						</tr><tr>
-							<td><input type='text' name='imagesource'</td>
-							<td><input type='text' name='sourcelink'</td>
+							<td><input type='text' name='imagesource'></td>
+							<td><input type='text' name='sourcelink'></td>
 						</tr><tr>
 							<td colspan='2'><textarea name='review'></textarea></td>
 						</tr><tr>	
 							<td colspan='2'><input type='text' name='tags'></td>
 						</tr><tr>
-							<td><input type='text' name='recommendees'></td>
+							<td><input type='text' name='submittee'></td>
 							<td><input type='submit' id='submitconfirm'><button type='button' id='submitcancel'>Cancel</button></td>
 						</tr>
 					</table>
@@ -110,7 +110,6 @@
 				<td class='detailCell'></td>
 			</tr></table></div>
 			<div id='wellcontrols'><span class='prev5control'>&lt;</span><span class='next5control'>&gt;</span></div>
-		</div>
 		</div>
 	</div>
 	</body>

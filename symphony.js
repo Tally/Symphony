@@ -1,9 +1,13 @@
 var nextOffset = 0;
-var maxOffset = 8;
+var nextMoreAlbums = true;
+var nextPrevAlbums = false;
 var wellOffset = 0;
-var maxWellOffset = 5;
+var wellMoreAlbums = true;
+var wellPrevAlbums = false;
 
-var wellSelector = "Tally Lassiter";
+var userFirst = "Prally";
+var userLast = "Lassark";
+var wellSelector = userFirst+" "+userLast;
 
 var albumFiller = ["Tally", "Lassiter", "Le Artiste", "YTF not, eh?", "Al the Bum", "album-filler.png", "http://www.youtube.com/watch?v=dQw4w9WgXcQ"]
 
@@ -18,7 +22,7 @@ recommendations[6] = ["Price", "Clark", "Kinks", "it's good I guess", "Kinks", "
 recommendations[7] = ["Price", "Clark", "Alt-J", "oh yeah", "Alt-J", "cover7.jpg"];
 recommendations[8] = ["Price", "Clark", "Quebec", "awesome", "Ween", "cover8.jpg"];
 
-for(var i=9;i<50;i++){recommendations[i]=["Tally", "Lassiter", "Le Artiste", "YTF not, eh?", "Al the Bum("+i+")", "album-filler.png", "http://www.youtube.com/watch?v=dQw4w9WgXcQ"]};
+for(var i=9;i<15;i++){recommendations[i]=["Tally", "Lassiter", "Le Artiste", "YTF not, eh?", "Al the Bum("+i+")", "album-filler.png", "http://www.youtube.com/watch?v=dQw4w9WgXcQ"]};
 
 var zachAlbums = new Array();
 var nickAlbums = new Array();
@@ -28,7 +32,7 @@ ownAlbums[1] = ["Prally", "Lassark", "Nirvana", "They totally understand me, man
 ownAlbums[2] = ["Prally", "Lassark", "The Tins", "Kick The Aluminums' ass.", "Alboom", "tins.jpg", "rekall.tumblr.com"];
 ownAlbums[3] = ["Prally", "Lassark", "LCD Soundsystem", "They're musical", "Album", "lcd.jpg", "explosionsandboobs.com"];
 
-var friends = ["Price Clark", "Tally Lassiter", "Zach Stamper", "Nick Mortenson", "Grace Thompson"];
+var friends = ["Prally Lassark", "Price Clark", "Tally Lassiter", "Zach Stamper", "Nick Mortenson", "Grace Thompson"];
 
 var friendAlbums = new Array();
 friendAlbums["Tally Lassiter"] = ownAlbums;
@@ -36,6 +40,7 @@ friendAlbums["Price Clark"] = [recommendations[1], recommendations[2], recommend
 friendAlbums["Zach Stamper"] = zachAlbums;
 friendAlbums["Nick Mortenson"] = nickAlbums;
 friendAlbums["Grace Thompson"] = graceAlbums;
+friendAlbums["Prally Lassark"] = recommendations;
 
 $(document).ready(function() {
 	$("#top3details").hide();
@@ -52,6 +57,8 @@ $(document).ready(function() {
 	$("#submitcancel").click(function() {cancelSubmissionForm()});
 	$("#next5 .next5control").click(function() {next5Suggestions()});
 	$("#next5 .prev5control").click(function() {prev5Suggestions()});
+	$("#dynamicwell .next5control").click(function() {next5Well()});
+	$("#dynamicwell .prev5control").click(function() {prev5Well()});
 });
 
 //Control Painters
@@ -75,7 +82,12 @@ function paintNext5() {
 	var currOffset = nextOffset + 4;
 	
 	var currCell = $("#next5 td:first");
+	$("#next5 td").empty();
 	for (var i = 0; i<5; i++) {
+		if (recommendations[currOffset] == null) {
+			nextMoreAlbums = false;
+			break;
+		}
 		currCell.html("<img alt='"+recommendations[currOffset][4]+"' src='"+recommendations[currOffset][5]+"'>").next().html("<strong><em>"+recommendations[currOffset][4]+"</em><br>"+recommendations[currOffset][2]+"</strong><br><a href='"+recommendations[currOffset][6]+"'>Listen</a>").hide();
 		currCell = currCell.next().next();
 		currOffset++;
@@ -121,7 +133,7 @@ function showSubmissionForm() {
 	$("#submissionform [name=sourcelink]").val("Source URL");
 	$("#submissionform [name=review]").val("Reason for recommending");
 	$("#submissionform [name=tags]").val("Tags, Comma-separated (e.g. Dark, Dancy, Hip Hop)");
-	$("#submissionform [name=recommendees]").val("Recommendee(s)");
+	$("#submissionform [name=submittee]").val("Recommendee(s)");
 	$("#submissionform").show();
 }
 
@@ -138,15 +150,20 @@ function expandOrCloseNext5(index) {
 
 function populateWell() {
 	var userPool = []
+	var tempWellOffset = wellOffset;
+	if (friendAlbums[wellSelector] == null) return;
 	userPool = friendAlbums[wellSelector];
 	$("#dynamicwell td").empty();
 	$("#welltitle").text("Music Recommended by "+wellSelector);
 	
 	var currCell = $("#dynamicwell td:first");
 	for (var i = 1; i<=5; i++) {
-		wellOffset++;
-		if (userPool[wellOffset] == null) break;
-		currCell.html("<img alt='"+userPool[wellOffset][4]+"' src='"+userPool[wellOffset][5]+"'>").next().html("<strong><em>"+userPool[wellOffset][4]+"</em><br>"+userPool[wellOffset][2]+"</strong><br><a href='"+userPool[wellOffset][6]+"'>Listen</a>").hide();
+		tempWellOffset++;
+		if (userPool[tempWellOffset] == null) {
+			wellMoreAlbums = false;
+			break;
+		}
+		currCell.html("<img alt='"+userPool[tempWellOffset][4]+"' src='"+userPool[tempWellOffset][5]+"'>").next().html("<strong><em>"+userPool[tempWellOffset][4]+"</em><br>"+userPool[tempWellOffset][2]+"</strong><br><a href='"+userPool[tempWellOffset][6]+"'>Listen</a>").hide();
 		currCell = currCell.next().next();
 	}
 	
@@ -155,17 +172,37 @@ function populateWell() {
 
 //Controls
 function next5Suggestions() {
-	nextOffset + 5 < maxOffset ? nextOffset += 5 : nextOffset = maxOffset;
+	if (!nextMoreAlbums) return;
+	nextPrevAlbums = true;
+	nextOffset += 5;
 	paintNext5();
 }
 
 function prev5Suggestions() {
-	nextOffset - 5 > 0 ? nextOffset -= 5 : nextOffset = 0;
+	if (!nextPrevAlbums) return;
+	nextOffset -= 5;
+	if (nextOffset == 0) nextPrevAlbums = false;
 	paintNext5();
+}
+
+function next5Well() {
+	if (!wellMoreAlbums) return;
+	wellPrevAlbums = true;
+	wellOffset += 5;
+	populateWell();
+}
+
+function prev5Well() {
+	if (!wellPrevAlbums) return;
+	wellOffset -= 5;
+	if (wellOffset == 0) wellPrevAlbums = false;
+	populateWell();
 }
 
 function wellSelect(selectee) {
 	wellSelector = selectee;
 	wellOffset = 0;
+	wellMoreAlbums = true;
+	wellPrevAlbums = false;
 	populateWell();
 }

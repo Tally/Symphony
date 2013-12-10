@@ -42,10 +42,11 @@ td img {
 	top: 80px;
 	padding: 7px;
 	box-shadow: 2px 2px 1px rgba(0,0,0,.5);
+	z-index: 1;
 }
 
 #username {
-	text-align: center;
+	margin: auto;
 	font-size: 24px;
 	font-family: serif;
 }
@@ -74,19 +75,18 @@ td img {
 
 #contentpanel {
 	margin-left: 189px;
+	background-color: pink;
+	padding-top: 80px;
+	height: 100%
+}
+
+#contentpanel table {
+	height: 100%;
+	margin: auto;
 }
 
 #contentpanel img {
 	border: 1px solid black;
-}
-
-#musicarea {
-	padding-top: 80px;
-}
-
-#musicarea table {
-	height: 100%;
-	margin: auto;
 }
 
 #titlebar {
@@ -103,7 +103,7 @@ td img {
 #submissionform {
 	background-color: purple;
 	color: white;
-	height: 360px;
+	height: 100%;
 	padding: 10px;
 }
 
@@ -130,7 +130,7 @@ td img {
 
 #top3 {
 	background-color: pink;
-	height: 360px;
+	height: 100%;
 	overflow-x: auto;
 }
 
@@ -171,7 +171,10 @@ td img {
 	height: 210px;
 	text-align: center;
 	overflow-x: hidden;
-	position: relative;
+	position: fixed;
+	bottom: 210px;
+	left: 189px;
+	right: 0px;
 }
 
 #next5 img {
@@ -235,8 +238,11 @@ td img {
 	color: white;
 	height: 210px;
 	overflow-y: auto;
-	position: relative;
+	position: fixed;
 	overflow-y: hidden;
+	bottom: 0px;
+	left: 189px;
+	right: 0px;
 }
 
 #dynamicwell img {
@@ -245,7 +251,9 @@ td img {
 }
 
 h1 {
-	font-size: 32px;
+	margin-top: 15px;
+	font-family: 'Allan', cursive;
+	font-size: 40px;
 	text-align: center;
 }
 
