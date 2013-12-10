@@ -12,8 +12,10 @@
 		<h1>Symphony</h1>
 		</div>
 	<div id='userpanel'>
-		<span id='username'>Prally<br>
-		Lassark</span>
+		<div id='usernamecontainer'>
+			<span id='sass'>In case you forgot, you're:</span><br>
+			<span id='username'></span>
+		</div>
 		<div id='ownlast3'>
 		<h4>Recently Submitted</h4>
 		<table width='100px' id='submissions'><tr>
@@ -57,7 +59,7 @@
 					<table>
 						<tr>
 							<td>
-								<input type='hidden' name='
+								<input type='hidden' name='submitter'>
 								<select name='trackoralbum'>
 									<option value='track'>Track</option>
 									<option value='album'>Album</option>

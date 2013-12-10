@@ -40,7 +40,7 @@ friendAlbums["Price Clark"] = [recommendations[1], recommendations[2], recommend
 friendAlbums["Zach Stamper"] = zachAlbums;
 friendAlbums["Nick Mortenson"] = nickAlbums;
 friendAlbums["Grace Thompson"] = graceAlbums;
-friendAlbums["Prally Lassark"] = priceAlbums;
+friendAlbums["Prally Lassark"] = recommendations;
 
 $(document).ready(function() {
 	$("#top3details").hide();
@@ -62,6 +62,11 @@ $(document).ready(function() {
 });
 
 //Control Painters
+function paintUser () {
+	$("#username").html(userFirst+"<br>"+userLast);
+	$("input [name=submitter]").val(userFirst+" "+userLast);
+}
+
 function paintRecent() {
 	$("#submissions td:first").html("<img alt='"+ownAlbums[1][4]+"' src='"+ownAlbums[1][5]+"'>").next().html("<img alt='"+ownAlbums[2][4]+"' src='"+ownAlbums[2][5]+"'>").next().html("<img alt='"+ownAlbums[3][4]+"' src='"+ownAlbums[3][5]+"'>");
 }

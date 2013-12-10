@@ -46,6 +46,7 @@ $(document).ready(function() {
 	$("#top3details").hide();
 	$("#submissionform").hide();
 	
+	paintUser();
 	paintRecent();
 	paintFriends();
 	paintTop3();
@@ -62,6 +63,11 @@ $(document).ready(function() {
 });
 
 //Control Painters
+function paintUser () {
+	$("#username").html(userFirst+"<br>"+userLast);
+	$("input [name=submitter]").val(userFirst+" "+userLast);
+}
+
 function paintRecent() {
 	$("#submissions td:first").html("<img alt='"+ownAlbums[1][4]+"' src='"+ownAlbums[1][5]+"'>").next().html("<img alt='"+ownAlbums[2][4]+"' src='"+ownAlbums[2][5]+"'>").next().html("<img alt='"+ownAlbums[3][4]+"' src='"+ownAlbums[3][5]+"'>");
 }
