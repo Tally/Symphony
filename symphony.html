@@ -16,9 +16,9 @@
 		<div id='ownlast3'>
 		<h4>Recently Submitted</h4>
 		<table width='100px' id='submissions'><tr>
-			<td><img title='LCD Soundsystem 'src='lcd.jpg'></td>
-			<td><img title='Nirvana' src='nirvana.jpg'></td>
-			<td><img title='The Tins' src='tins.jpg'></td>
+			<td></td>
+			<td></td>
+			<td></td>
 			</tr></table>
 			<button id='submitnew'>Submit</button>
 		</div>
@@ -53,34 +53,34 @@
 				</table>
 			</div>
 			<div id='submissionform'>
-				<table>
-				<tr>
-					<td>
-						<select name='trackoralbum'>
-						<option value='track'>Track</option>
-						<option value='album'>Album</option>
-						<option value='general'>General</option>
-						</select>
-						<input type='text' name='title'></td>
-					<td>by <input type='text' name='artist'></td>
-				</tr><tr>
-					<td><input type='text' name='imagesource'</td>
-					<td><input type='text' name='sourcelink'</td>
-				</tr><tr>
-					<td colspan='2'><textarea name='review'></textarea></td>
-				</tr><tr>	
-					<td colspan='2'><input type='text' name='tags'></td>
-				</tr><tr>
-					<td><input type='text' name='recommendees'></td>
-					<td><button type='button' id='submitconfirm'><em>Submit Recommendation</em></button><button type='button' id='submitcancel'>Cancel</button></td>
-				</tr>
-				</table>
+				<form>
+					<table>
+						<tr>
+							<td>
+								<select name='trackoralbum'>
+									<option value='track'>Track</option>
+									<option value='album'>Album</option>
+									<option value='general'>General</option>
+								</select>
+								<input type='text' name='title'></td>
+							<td>by <input type='text' name='artist'></td>
+						</tr><tr>
+							<td><input type='text' name='imagesource'</td>
+							<td><input type='text' name='sourcelink'</td>
+						</tr><tr>
+							<td colspan='2'><textarea name='review'></textarea></td>
+						</tr><tr>	
+							<td colspan='2'><input type='text' name='tags'></td>
+						</tr><tr>
+							<td><input type='text' name='recommendees'></td>
+							<td><input type='submit' id='submitconfirm'><button type='button' id='submitcancel'>Cancel</button></td>
+						</tr>
+					</table>
+				</form>
 			</div>
 		</div>
 		<div id='next5'>
-			<div class='recommendationtitle' id='next5title'>5 More Recommendations</div>
-			<div id='prev5control'>-</div>
-			<div id='next5control'>+</div>
+			<div class='recommendationtitle' id='next5title'>More Recommendations</div>
 			<div id='next5summary'><table><tr>
 				<td class='coverCell'></td>
 				<td class='detailCell'></td>
@@ -93,17 +93,23 @@
 				<td class='coverCell'></td>
 				<td class='detailCell'></td>
 			</tr></table></div>
+			<div id='next5controls'><span class='prev5control'>&lt;</span><span class='next5control'>&gt;</span></div>
 		</div>
 		<div id='dynamicwell'>
-			<div class='recommendationtitle' id='welltitle'>Past Music Recommended by Tally</div>
-			<table><tr>
-			<td class='cover1'><img src='well1.jpg' title='Grimes' ></td>
-			<td class='cover1'><img src='well2.jpg' title='Blue Sky Black Death'></td>
-			<td class='cover1'><img src='well3.jpg' title='Twin Shadow'></td>
-			<td class='cover1'><img src='well4.jpg' title='RedLine Soundtrack'></td>
-			<td class='cover1'><img src='well5.jpg' title='Phantogram'></td>
-			</table>
-			</div>
+			<div class='recommendationtitle' id='welltitle'>Past Music Recommended</div>
+			<div id='wellcontents'><table><tr>
+				<td class='coverCell'></td>
+				<td class='detailCell'></td>
+				<td class='coverCell'></td>
+				<td class='detailCell'></td>
+				<td class='coverCell'></td>
+				<td class='detailCell'></td>
+				<td class='coverCell'></td>
+				<td class='detailCell'></td>
+				<td class='coverCell'></td>
+				<td class='detailCell'></td>
+			</tr></table></div>
+			<div id='wellcontrols'><span class='prev5control'>&lt;</span><span class='next5control'>&gt;</span></div>
 		</div>
 		</div>
 	</div>

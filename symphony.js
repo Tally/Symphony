@@ -1,5 +1,9 @@
 var nextOffset = 0;
-var maxOffset = 6;
+var maxOffset = 8;
+var wellOffset = 0;
+var maxWellOffset = 5;
+
+var wellSelector = "Tally Lassiter";
 
 var albumFiller = ["Tally", "Lassiter", "Le Artiste", "YTF not, eh?", "Al the Bum", "album-filler.png", "http://www.youtube.com/watch?v=dQw4w9WgXcQ"]
 
@@ -14,39 +18,52 @@ recommendations[6] = ["Price", "Clark", "Kinks", "it's good I guess", "Kinks", "
 recommendations[7] = ["Price", "Clark", "Alt-J", "oh yeah", "Alt-J", "cover7.jpg"];
 recommendations[8] = ["Price", "Clark", "Quebec", "awesome", "Ween", "cover8.jpg"];
 
-for(var i=9;i<maxOffset+5;i++){recommendations[i]=["Tally", "Lassiter", "Le Artiste", "YTF not, eh?", "Al the Bum("+i+")", "album-filler.png", "http://www.youtube.com/watch?v=dQw4w9WgXcQ"]};
+for(var i=9;i<50;i++){recommendations[i]=["Tally", "Lassiter", "Le Artiste", "YTF not, eh?", "Al the Bum("+i+")", "album-filler.png", "http://www.youtube.com/watch?v=dQw4w9WgXcQ"]};
 
-var ownRecommendations =  new Array();
-ownRecommendations[0] = [];
-ownRecommendations[1] = [];
-ownRecommendations[2] = [];
-ownRecommendations[3] = [];
-ownRecommendations[4] = [];
+var zachAlbums = new Array();
+var nickAlbums = new Array();
+var graceAlbums = new Array();
+var ownAlbums =  new Array();
+ownAlbums[1] = ["Prally", "Lassark", "Nirvana", "They totally understand me, man.", "In Utero", "nirvana.jpg", "zombo.com"];
+ownAlbums[2] = ["Prally", "Lassark", "The Tins", "Kick The Aluminums' ass.", "Alboom", "tins.jpg", "rekall.tumblr.com"];
+ownAlbums[3] = ["Prally", "Lassark", "LCD Soundsystem", "They're musical", "Album", "lcd.jpg", "explosionsandboobs.com"];
 
-var friends = ["George Clark", "Tally Lassiter", "Zach Stamper", "Nick Mortenson", "Grace Thompson"];
+var friends = ["Price Clark", "Tally Lassiter", "Zach Stamper", "Nick Mortenson", "Grace Thompson"];
 
-
+var friendAlbums = new Array();
+friendAlbums["Tally Lassiter"] = ownAlbums;
+friendAlbums["Price Clark"] = [recommendations[1], recommendations[2], recommendations[3], recommendations[4], recommendations[5], recommendations[6], recommendations[7], recommendations[8]];
+friendAlbums["Zach Stamper"] = zachAlbums;
+friendAlbums["Nick Mortenson"] = nickAlbums;
+friendAlbums["Grace Thompson"] = graceAlbums;
 
 $(document).ready(function() {
 	$("#top3details").hide();
 	$("#submissionform").hide();
 	
+	paintRecent();
 	paintFriends();
 	paintTop3();
 	paintNext5();
+	populateWell();
 	
 	$(".mainAlbums").click(function() {expandTop3Details($(this).index()+1)});
 	$("#submitnew").click(function() {showSubmissionForm()});
 	$("#submitcancel").click(function() {cancelSubmissionForm()});
-	$("#next5control").click(function() {next5Suggestions()});
-	$("#prev5control").click(function() {prev5Suggestions()});
+	$("#next5 .next5control").click(function() {next5Suggestions()});
+	$("#next5 .prev5control").click(function() {prev5Suggestions()});
 });
 
 //Control Painters
+function paintRecent() {
+	$("#submissions td:first").html("<img alt='"+ownAlbums[1][4]+"' src='"+ownAlbums[1][5]+"'>").next().html("<img alt='"+ownAlbums[2][4]+"' src='"+ownAlbums[2][5]+"'>").next().html("<img alt='"+ownAlbums[3][4]+"' src='"+ownAlbums[3][5]+"'>");
+}
+
 function paintFriends() {
 	for (i=0; i<friends.length; i++) {
 		$("#friendlist").append("<li><a>"+friends[i]+"</a></li>");
 	}
+	$("#friendlist li").click(function() {wellSelect($(this).text())});
 }
 
 //Content Painters
@@ -83,9 +100,9 @@ function expandTop3Details(albumNo) {
 	
 	$("#top3details .recommenderCell").html(album[0]+" "+album[1]+" recommends this "+albumTypeText);
 	$("#top3details .coverCell").html("<img alt='"+album[4]+"' src='"+album[5]+"'>");
-	$("#top3details .titleCell").html("<strong>"+album[4]+"</strong> by "+album[2]);
+	$("#top3details .titleCell").html("<em><strong>"+album[2]+"</strong></em> by "+album[4]);
 	$("#top3details .linkCell").html(sourceLinkText);
-	$("#top3details .reviewCell").html("\""+album[3]+"\"");
+	$("#top3details .reviewCell").html("<br>\""+album[3]+"\"");
 	
 	$("#top3details").show();
 	$(".backbutton").click(function() {minimizeTop3Details()});
@@ -104,7 +121,7 @@ function showSubmissionForm() {
 	$("#submissionform [name=sourcelink]").val("Source URL");
 	$("#submissionform [name=review]").val("Reason for recommending");
 	$("#submissionform [name=tags]").val("Tags, Comma-separated (e.g. Dark, Dancy, Hip Hop)");
-	$("#submissionform [name=recommendees]").val("To Whom You Are Recommending");
+	$("#submissionform [name=recommendees]").val("Recommendee(s)");
 	$("#submissionform").show();
 }
 
@@ -119,15 +136,36 @@ function expandOrCloseNext5(index) {
 	alert("."+currIndex+".detailCell");
 }
 
+function populateWell() {
+	var userPool = []
+	userPool = friendAlbums[wellSelector];
+	$("#dynamicwell td").empty();
+	$("#welltitle").text("Music Recommended by "+wellSelector);
+	
+	var currCell = $("#dynamicwell td:first");
+	for (var i = 1; i<=5; i++) {
+		wellOffset++;
+		if (userPool[wellOffset] == null) break;
+		currCell.html("<img alt='"+userPool[wellOffset][4]+"' src='"+userPool[wellOffset][5]+"'>").next().html("<strong><em>"+userPool[wellOffset][4]+"</em><br>"+userPool[wellOffset][2]+"</strong><br><a href='"+userPool[wellOffset][6]+"'>Listen</a>").hide();
+		currCell = currCell.next().next();
+	}
+	
+	$("#dynamicwell img").click(function() {$(this).parent().next().toggle()});
+}
+
 //Controls
 function next5Suggestions() {
 	nextOffset + 5 < maxOffset ? nextOffset += 5 : nextOffset = maxOffset;
-	alert(nextOffset);
 	paintNext5();
 }
 
 function prev5Suggestions() {
 	nextOffset - 5 > 0 ? nextOffset -= 5 : nextOffset = 0;
-	alert(nextOffset);
 	paintNext5();
+}
+
+function wellSelect(selectee) {
+	wellSelector = selectee;
+	wellOffset = 0;
+	populateWell();
 }

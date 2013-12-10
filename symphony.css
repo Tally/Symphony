@@ -7,6 +7,7 @@
 	width: 100%;
 	height: 100%;
 	background-color: rgb(51,51,51);
+	position: relative;
 }
 
 html,body {
@@ -38,8 +39,9 @@ td img {
 	background: rgb(51,51,51);
 	color: white;
 	position: fixed;
-	margin-top: 80px;
+	top: 80px;
 	padding: 7px;
+	box-shadow: 2px 2px 1px rgba(0,0,0,.5);
 }
 
 #username {
@@ -63,11 +65,19 @@ td img {
 #friendlist {
 	text-align: right;
 	list-style-type: none;
-	margin-right: 20px;
+	margin-right: 10px;
+}
+
+#friendlist li a {
+	font-size: 14px;
 }
 
 #contentpanel {
 	margin-left: 189px;
+}
+
+#contentpanel img {
+	border: 1px solid black;
 }
 
 #musicarea {
@@ -82,10 +92,12 @@ td img {
 #titlebar {
 	width:100%;
 	height: 80px;
-	background: linear-gradient(rgb(51,51,51),rgb(21,21,21));
+	background:rgb(21,21,21);
 	color: white;
 	position: fixed;
 	text-align: center;
+	box-shadow: 2px 2px 1px rgba(0,0,0,.5);
+	z-index: 1;
 }
 
 #submissionform {
@@ -93,7 +105,6 @@ td img {
 	color: white;
 	height: 360px;
 	padding: 10px;
-	font-size: 14px;
 }
 
 #submissionform [type=text] {
@@ -106,7 +117,15 @@ td img {
 }
 
 #submissionform [name=title] {
-	width: 70%;
+	width: 60%;
+}
+
+#submissionform select {
+	width: 35%;
+}
+
+#submissionform input,select,textarea,button {
+	font-size: 14px;
 }
 
 #top3 {
@@ -128,6 +147,7 @@ td img {
 	padding-top: 5px;
 	padding-bottom: 5px;
 	width: 100%;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.3);
 }
 
 #top3summary {
@@ -150,22 +170,23 @@ td img {
 	background-color: green;
 	height: 210px;
 	text-align: center;
-	overflow-x: auto;
+	overflow-x: hidden;
 	position: relative;
 }
 
 #next5 img {
-	padding: 10px;
+	margin: 10px;
 	height: 130px;
 }
 
 #next5 img:hover {
-	background-color: black;
+	border: 1px solid white;
 }
 
-#next5 table {
+#next5 table, #dynamicwell table {
 	border-collapse: collapse;
 	width: auto;
+	margin: auto;
 }
 
 #next5 tr,tbody {
@@ -178,47 +199,58 @@ td img {
 	padding-right: 15px;
 }
 
-#prev5control,#next5control {
-	height: 180px;
+.prev5control,.next5control {
+	height: 120px;
 	width: 25px;
 	font-size: 36px;
 	background-color: rgba(0,0,0,.75);
 	color: white;
 	display: block;
+	position: absolute;
+	top: 32px;
+	padding-top: 60px;
+	text-shadow: 1px 1px black;
 }
 
-#prev5control {
+.prev5control {
 	float: left;
 	left: 0px;
 }
 
-#prev5control:hover {
-	border-right: 4px solid red;
+.prev5control:hover {
+	background-color: rgba(255,100,100,.85);
 }
 
-#next5control {
+.next5control {
 	float: right;
 	right: 0px;
 }
 
-#next5control:hover {
-	border-left: 4px solid red;
+.next5control:hover {
+	background-color: rgba(255,100,100,.85);
 }
 
 #dynamicwell {
 	background-color: rgb(51,51,51);
 	color: white;
-	min-height: 200px;
+	height: 210px;
 	overflow-y: auto;
+	position: relative;
+	overflow-y: hidden;
 }
 
-.cover1 {
-	height:125px;
+#dynamicwell img {
+	margin: 10px;
+	height: 130px;
 }
 
 h1 {
 	font-size: 32px;
 	text-align: center;
+}
+
+h4,h5 {
+	border-bottom: 1px solid white;
 }
 
 li {
