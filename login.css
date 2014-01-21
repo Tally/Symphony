@@ -1,0 +1,11 @@
+#container {
+	margin: 0 auto;
+	width: 400px;
+	position:absolute;
+	left:30%;
+	top:0%;
+	color:white;
+}
+body{
+	font-color:white;
+}
