@@ -25,22 +25,21 @@ td img {
 }
 
 #top3,#next5 {
-	padding: 0px;
 	overflow-y: hidden;
 }
 
 #submissions img {
 	width: 50px;
+	box-shadow: 1px 1px black;
 }
 
 #userpanel {
-	width: 175px;
+	width: 190px;
 	height: 100%;
 	background: rgb(51,51,51);
 	color: white;
 	position: fixed;
-	top: 81px;
-	padding: 7px;
+	top: 71px;
 	box-shadow: 2px 2px 1px rgba(0,0,0,.5);
 	z-index: 1;
 }
@@ -56,20 +55,23 @@ td img {
 
 #username {
 	margin: auto;
-	font-size: 24px;
-	font-family: serif;
+	font-size: 30px;
+	font-family: 'Allan';
+	text-shadow: 1px 1px cyan;
 }
 
 #ownlast3 {
-	height: 170px;
-	width: 179px;
-	margin-left: -7px;
-	padding: 5px;
+	height: 130px;
+	width: 190px;
 	background-color: green;
+	position: relative;
 }
 
-#submit {
-	margin-left: auto;
+#submitnew {
+	position: absolute;
+	font-weight: bold;
+	bottom: 5px;
+	right: 5px;
 }
 
 #friendlist {
@@ -83,10 +85,10 @@ td img {
 }
 
 #contentpanel {
-	margin-left: 189px;
+	margin-left: 190px;
 	background-color: cyan;
-	padding-top: 80px;
-	height: 100%
+	padding-top: 70px;
+	position: relative;
 }
 
 #contentpanel table {
@@ -95,12 +97,12 @@ td img {
 }
 
 #contentpanel img {
-	border: 1px solid black;
+	box-shadow: 1px 1px black;
 }
 
 #titlebar {
 	width:100%;
-	height: 80px;
+	height: 70px;
 	background:rgb(30,30,30);
 	color: white;
 	position: fixed;
@@ -121,12 +123,16 @@ td img {
 	width: 90%;
 }
 
-#submissionform [name=review] {
+#submissionform [name=type] {
+	width: 75px;
+}
+
+#submissionform [name=recommendationText] {
 	width: 90%;
 	height: 120px;
 }
 
-#submissionform [name=title] {
+#submissionform [name=albumTrack] {
 	width: 60%;
 }
 
@@ -140,7 +146,11 @@ td img {
 
 .recommendationtitle {
 	text-align: center;
+	font-size: 18px;
+	font-family: 'Signika Negative', sans-serif;
+	font-weight: 600;
 	color: white;
+	text-shadow: 1px 1px black;
 	background-color: rgba(0,0,0,.75);
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -148,19 +158,30 @@ td img {
 	box-shadow: 1px 1px 1px rgba(0,0,0,.3);
 }
 
+#top3 .recommendationtitle {
+	border-bottom: 1px solid cyan;
+}
+
+#next5 .recommendationtitle {
+	border-bottom: 1px solid teal;
+}
+
+#dynamicwell .recommendationtitle {
+	border-bottom: 1px solid white;
+}
+
 #top3 {
 	background-color: cyan;
-	height: 100%;
+	height: 360px;
 	overflow-x: auto;
-	position: fixed;
-	left: 189px;
+	left: 190px;
 	right: 0px;
 }
 
 #top3 img {
 	width: 200px;
-	border: 1px solid black;
-	margin: 25px;
+	box-shadow: 1px 1px black;
+	margin: 30px auto 15px auto;
 }
 
 #top3summary {
@@ -175,13 +196,22 @@ td img {
 }
 
 #top3summary td:hover {
-	background: black;
+	background: rgba(0,0,0,.5);
 	color: white;
+	cursor: pointer;
+}
+
+#top3details td {
+	font-size: 14px;
 }
 
 #top3details table {
-	margin: 35px;
+	margin: 0px 50px 0px 50px;
 	max-width: 80%;
+}
+
+#top3details td {
+	padding: 10px;
 }
 
 .recommenderCell {
@@ -197,10 +227,18 @@ td img {
 	height: 210px;
 	text-align: center;
 	overflow-x: hidden;
-	position: fixed;
-	bottom: 210px;
-	left: 189px;
+	position: relative;
+	left: 0px;
 	right: 0px;
+}
+
+.wellhidden {
+	position: fixed;
+	bottom: 0px;
+}
+
+.wellshown {
+	padding-bottom: 210px;
 }
 
 #next5 img {
@@ -210,6 +248,7 @@ td img {
 
 #next5 img:hover, #dynamicwell img:hover {
 	border: 1px solid white;
+	cursor: pointer;
 }
 
 #next5 table, #dynamicwell table {
@@ -229,17 +268,16 @@ td img {
 }
 
 .prev5control,.next5control {
-	height: 120px;
+	height: 118px;
 	width: 25px;
 	font-size: 36px;
 	background-color: rgba(0,0,0,.75);
 	color: white;
 	display: block;
 	position: absolute;
-	top: 32px;
-	padding-top: 60px;
+	top: 33px;
+	padding-top: 65px;
 	text-shadow: 1px 1px black;
-	z-index: 1;
 }
 
 .prev5control {
@@ -249,6 +287,7 @@ td img {
 
 .prev5control:hover {
 	background-color: rgba(255,100,100,.85);
+	cursor: pointer;
 }
 
 .next5control {
@@ -258,6 +297,7 @@ td img {
 
 .next5control:hover {
 	background-color: rgba(255,100,100,.85);
+	cursor: pointer;
 }
 
 #dynamicwell {
@@ -268,8 +308,9 @@ td img {
 	position: fixed;
 	overflow-y: hidden;
 	bottom: 0px;
-	left: 189px;
+	left: 190px;
 	right: 0px;
+	z-index: 2;
 }
 
 #dynamicwell img {
@@ -278,22 +319,46 @@ td img {
 }
 
 h1 {
-	margin-top: 15px;
-	font-family: 'Allan', cursive;
+	margin-top: 8px;
+	font-family: 'Allan';
+	font-weight: 400;
 	font-size: 44px;
 	text-align: center;
+	text-shadow: 2px 2px magenta;
+}
+
+h2,h3,h4,h5,h6 {
+	font-family: 'Signika Negative', sans-serif;
+	font-weight: 600;
+	font-size: 100%;
+	text-align: center;
+	text-shadow: 1px 1px black;
+	margin: 5px 10px 5px 10px;
 }
 
 h4,h5 {
 	border-bottom: 1px solid white;
 }
 
-li {
-	margin: 8px;
-	padding-right: 5px;
+#controls {
+	position: relative;
 }
 
-li:hover {
-	border-right: white solid 1px;
-	background-color: black;
+#userpanel li {
+	font-weight: bold;
+	margin: 8px;
+	padding-right: 5px;
+	color: magenta;
+	cursor: pointer;
+}
+
+#showhidewell {
+	position: absolute;
+	left: 50px;
+}
+
+.selected {
+	background-color: rgb(30,30,30);
+	color: white;
+	border: 1px solid magenta;
 }

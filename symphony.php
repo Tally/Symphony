@@ -1,3 +1,17 @@
+<?php
+	if (!isset($_COOKIE['SYMPHONY'])) {} else {
+
+		$con=mysqli_connect("classroom.cs.unc.edu","gpwclark","brennan5?@?@","gpwclarkdb");
+		$sqlName= mysqli_query($con,"Select first,last,email From Users Where email = '".$_COOKIE['SYMPHONY']."'" );
+
+		$firstName = "Who TF";
+		$lastName = "are you?!";
+		while($row = mysqli_fetch_array($sqlName)){
+		$firstName =  $row['first'];
+		$lastName =  $row['last'];
+		}
+	}
+?>
 <!DOCTYPE html>
 	<head>
 	<title>Symphony</title>
