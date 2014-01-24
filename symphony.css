@@ -232,12 +232,12 @@ td img {
 	right: 0px;
 }
 
-.wellhidden {
+#next5 .wellhidden {
 	position: fixed;
-	bottom: 0px;
+	bottom: 210px;
 }
 
-.wellshown {
+#next5 .wellshown {
 	padding-bottom: 210px;
 }
 
