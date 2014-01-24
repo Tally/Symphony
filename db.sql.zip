@@ -1,0 +1,245 @@
+-- phpMyAdmin SQL Dump
+-- version 3.5.8.2
+-- http://www.phpmyadmin.net
+--
+-- Host: classroom.cs.unc.edu
+-- Generation Time: Jan 23, 2014 at 10:31 PM
+-- Server version: 5.1.71
+-- PHP Version: 5.3.3
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `gpwclarkdb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Music`
+--
+
+CREATE TABLE IF NOT EXISTS `Music` (
+  `musicId` bigint(30) NOT NULL,
+  `transactionId` bigint(30) NOT NULL,
+  `artist` text NOT NULL,
+  `recommendationText` longtext NOT NULL,
+  PRIMARY KEY (`musicId`),
+  KEY `transactionID` (`transactionId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Music`
+--
+
+INSERT INTO `Music` (`musicId`, `transactionId`, `artist`, `recommendationText`) VALUES
+(101211024810, 201211024810, 'Electric Guest', 'Really solid and pretty fun, especially This head I hold.'),
+(101211030324, 201211030324, 'DJ Gawd', 'FUUN'),
+(101211033056, 201211033056, 'Evil Needle', 'Great chill-out music, enjoyable grooves.'),
+(101211033404, 201211033404, 'Portugal. The Man', 'Enjoyable indie-rock with experimental aspects that add to it rather than distract from it.'),
+(101211101448, 201211101448, 'Modest Mouse', 'Satellite skin I think is a song you might like.'),
+(101211111328, 201211111328, 'Lorn', 'A strong balance of dark and grungy with dancy and up-beat. Been through it at least a dozen times and love it.'),
+(101211112934, 201211112934, 'Timber Timbre', 'Spooky folk/country music. I prefer this to their more recent album.'),
+(101211125410, 201211125410, 'Alt-J', 'Filler'),
+(101211125502, 201211125502, 'Santigold', 'SHe is FANTASTIC'),
+(101211132725, 201211132725, 'The Velvet Underground', 'none');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Recommendation`
+--
+
+CREATE TABLE IF NOT EXISTS `Recommendation` (
+  `recommendationId` bigint(30) NOT NULL,
+  `musicId` bigint(30) NOT NULL,
+  `albumTrack` mediumtext NOT NULL,
+  `coverURL` longtext NOT NULL,
+  `sourceURL` longtext NOT NULL,
+  `type` char(1) NOT NULL,
+  PRIMARY KEY (`recommendationId`),
+  KEY `musicId` (`musicId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Recommendation`
+--
+
+INSERT INTO `Recommendation` (`recommendationId`, `musicId`, `albumTrack`, `coverURL`, `sourceURL`, `type`) VALUES
+(301211024810, 101211024810, 'Mondo', 'http://beatsperminute.com/wp-content/uploads/2012/04/Electric-Guest-Mondo-300x300.jpg', 'http://www.youtube.com/watch?v=vOo3aJ0IeCM', 'a'),
+(301211030324, 101211030324, 'track it before you wrack it', 'http://thepetwiki.com/images/thumb/Dog_Drugs.jpg/400px-Dog_Drugs.jpg', 'ftp://sup.dogg', 't'),
+(301211033056, 101211033056, 'Qualia', 'http://f0.bcbits.com/img/a2321653174_2.jpg', 'http://huhwhatwhere.bandcamp.com/album/qualia', 'a'),
+(301211033404, 101211033404, 'Satanic Satanist', 'http://a2.mzstatic.com/us/r30/Music/b8/4f/7c/mzi.ptucszyv.600x600-75.jpg', 'http://www.youtube.com/watch?v=T72eddgkIJw&list=PL3F27807BD3BAD35B', 'a'),
+(301211111328, 101211111328, 'Nothing Else', 'http://cdn2.thelineofbestfit.com/media/2010/05/lorn_cover.jpg', 'http://www.brainfeedersite.com/2010/05/28/lorn-nothing-else/', 'a'),
+(301211112934, 101211112934, 'Timber Timbre', 'https://a2-images.myspacecdn.com/images03/32/b55d7371e8a143819e3f049a6773ea4d/300x300.jpg', 'http://www.youtube.com/watch?v=icJOkfS7ImA', 'a'),
+(301211125325, 101211125325, 'The Velvet Underground & Nico', 'cover1.jpg', 'http://zombo.com', 'a'),
+(301211125410, 101211125410, 'Alt-J', 'cover7.jpg', 'http://explosionsandboobs.com', 'a'),
+(301211125502, 101211125502, 'Master of My Make-Believe', 'http://upload.wikimedia.org/wikipedia/en/thumb/e/ed/Santigold_-_Master_of_My_Make-Believe.jpg/220px-Santigold_-_Master_of_My_Make-Believe.jpg', 'http://www.youtube.com/playlist?list=PLBF9A83DA592E13C0', 'a'),
+(301211132725, 101211132725, 'The Velvet Underground & Nico', 'cover1.jpg', 'http://www.youtube.com', 'a');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Tags`
+--
+
+CREATE TABLE IF NOT EXISTS `Tags` (
+  `tagId` bigint(30) NOT NULL,
+  `musicId` bigint(30) NOT NULL,
+  `tag` tinytext NOT NULL,
+  PRIMARY KEY (`tagId`),
+  KEY `musicId` (`musicId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Tags`
+--
+
+INSERT INTO `Tags` (`tagId`, `musicId`, `tag`) VALUES
+(401211024810, 101211024810, 'Great'),
+(401211030324, 101211030324, '15.99, 0.05, 99.95'),
+(401211033056, 101211033056, 'Groovy, Instrumental, chill, beats'),
+(401211033404, 101211033404, 'rock'),
+(401211111328, 101211111328, 'dark, dancy, etc'),
+(401211112934, 101211112934, 'spooky, folk, country'),
+(401211125325, 101211125325, 'rock'),
+(401211125410, 101211125410, 'gun'),
+(401211125502, 101211125502, 'Electric-ish'),
+(401211132725, 101211132725, 'rock');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Test`
+--
+
+CREATE TABLE IF NOT EXISTS `Test` (
+  `idno` int(11) NOT NULL,
+  `date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Test`
+--
+
+INSERT INTO `Test` (`idno`, `date`) VALUES
+(2147483647, '2013-12-06 02:19:25'),
+(10, '2013-12-06 05:40:34'),
+(99, '0000-00-00 00:00:00'),
+(99, '0000-00-00 00:00:00'),
+(99, '0000-00-00 00:00:00'),
+(99, '0000-00-00 00:00:00'),
+(99, '0000-00-00 00:00:00'),
+(2013, '0000-00-00 00:00:00'),
+(2013, '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Test2`
+--
+
+CREATE TABLE IF NOT EXISTS `Test2` (
+  `id` int(11) NOT NULL,
+  `textField` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Test2`
+--
+
+INSERT INTO `Test2` (`id`, `textField`) VALUES
+(2147483647, ''),
+(1210212456, ''),
+(1210212501, 'Electric Guest'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText'),
+(1234, 'testText');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Transactions`
+--
+
+CREATE TABLE IF NOT EXISTS `Transactions` (
+  `transactionId` bigint(30) NOT NULL,
+  `submitterId` bigint(30) NOT NULL,
+  `submitteeId` bigint(30) NOT NULL,
+  `date` bigint(30) NOT NULL,
+  PRIMARY KEY (`transactionId`),
+  KEY `submitterID` (`submitterId`,`submitteeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Transactions`
+--
+
+INSERT INTO `Transactions` (`transactionId`, `submitterId`, `submitteeId`, `date`) VALUES
+(201211024810, 2222222222, 1111111111, 1211024810),
+(201211030324, 1111111111, 2222222222, 1211030324),
+(201211033056, 1111111111, 2222222222, 1211033056),
+(201211033404, 1111111111, 2222222222, 1211033404),
+(201211111328, 2222222222, 1111111111, 1211111328),
+(201211112934, 2222222222, 1111111111, 1211112934),
+(201211125325, 2222222222, 1111111111, 1211125325),
+(201211125410, 1111111111, 4444444444, 1211125410),
+(201211125502, 2222222222, 1111111111, 1211125502),
+(201211132725, 2222222222, 1111111111, 1211132725);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Users`
+--
+
+CREATE TABLE IF NOT EXISTS `Users` (
+  `UserId` bigint(30) NOT NULL,
+  `password` varchar(15) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `first` text NOT NULL,
+  `last` text NOT NULL,
+  PRIMARY KEY (`UserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table of Users';
+
+--
+-- Dumping data for table `Users`
+--
+
+INSERT INTO `Users` (`UserId`, `password`, `email`, `first`, `last`) VALUES
+(1111111111, 'symphony1', 'lassitet@live.unc.edu', 'Tally', 'Lassiter'),
+(2222222222, 'symphony1', 'gpwclark@gmail.com', 'Price', 'Clark'),
+(3333333333, 'symphony1', 'slove13@gmail.com', 'Steven', 'Love'),
+(4444444444, 'symphony1', 'mortnick@email.unc.edu ', 'Nick', 'Mortenson'),
+(5555555555, 'symphony1', 'gracert1@email.unc.edu ', 'Grace', 'Thompson'),
+(6666666666, 'symphony1', ' zstamper@live.unc.edu ', 'Zach', 'Stamper');
